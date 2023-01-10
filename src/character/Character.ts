@@ -51,6 +51,48 @@ class Character {
         return heayoun;
     }
   }
+
+  handleArrowKeyDown() {
+    const distance = SIZE;
+    const ArrowKeys = [
+      {
+        code: "38",
+        string: "ArrowUp",
+        movement: { x: 0, y: -distance },
+        isMoveable: () => this.position.y > 0,
+      },
+      {
+        code: "40",
+        string: "ArrowDown",
+        movement: { x: 0, y: distance },
+        isMoveable: () => this.position.y < this.canvas.height - SIZE,
+      },
+      {
+        code: "39",
+        string: "ArrowRight",
+        movement: { x: distance, y: 0 },
+        isMoveable: () => this.position.x < this.canvas.width - SIZE,
+      },
+      {
+        code: "37",
+        string: "ArrowLeft",
+        movement: { x: -distance, y: 0 },
+        isMoveable: () => this.position.x > 0,
+      },
+    ];
+
+    const handler = (e: KeyboardEvent) => {
+      for (let i = 0; i < ArrowKeys.length; i++) {
+        const { code, string, movement, isMoveable } = ArrowKeys[i];
+        if ([code.toString(), string].includes(e.key) && isMoveable()) {
+          this.position.x += movement.x;
+          this.position.y += movement.y;
+        }
+      }
+    };
+
+    return (e: KeyboardEvent) => handler(e);
+  }
 }
 
 export default Character;

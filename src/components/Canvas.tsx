@@ -5,8 +5,8 @@ import { useEffect } from "react";
 const Canvas = () => {
   let character: Character | null = null;
   const canvasRef = useCanvas((canvas) => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = 1500;
+    canvas.height = 700;
     canvas.style.background = "pink";
     character = new Character(canvas);
     document.addEventListener("keydown", character.handleArrowKeyDown());
@@ -21,7 +21,7 @@ const Canvas = () => {
 
   return (
     <div>
-      <canvas ref={canvasRef} />
+      <canvas ref={canvasRef} style={{ position: "absolute" }} />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import throttle from "../util/throttle";
 import CharacterImages from "./CharacterImages";
 
 interface Position {
@@ -81,7 +82,7 @@ class Character {
       },
     ];
 
-    const handler = (e: KeyboardEvent) => {
+    const handler = throttle((e: KeyboardEvent) => {
       for (let i = 0; i < ArrowKeys.length; i++) {
         const { code, string, movement, isMoveable } = ArrowKeys[i];
         if ([code.toString(), string].includes(e.key) && isMoveable()) {
@@ -89,7 +90,7 @@ class Character {
           this.position.y += movement.y;
         }
       }
-    };
+    }, 500);
 
     return (e: KeyboardEvent) => handler(e);
   }

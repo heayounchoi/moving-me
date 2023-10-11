@@ -1,5 +1,5 @@
 import useCanvas from "../hooks/useCanvas";
-import Character from "../character/Character";
+import Character from "../graphics/Character";
 import { useEffect } from "react";
 
 const Canvas = () => {
